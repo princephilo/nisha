@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cake Time 🎂</title>
+<title>You Are Special 💕</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -13,7 +13,9 @@ display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(135deg,#ffd1dc,#fff1c1);
-font-family:'Trebuchet MS',sans-serif
+font-family:'Trebuchet MS',sans-serif;
+overflow-x:hidden;
+position:relative;
 }
 
 .container{text-align:center}
@@ -127,6 +129,42 @@ animation:pop .6s forwards
 from{transform:scale(.5);opacity:0}
 to{transform:scale(1);opacity:1}
 }
+
+/* Party Stuff */
+.party-item{
+position:fixed;
+width:15px;
+height:15px;
+border-radius:50%;
+animation:fall 4s linear forwards;
+opacity:0.9;
+z-index:9999;
+}
+
+.party-item.heart::after{
+content:"❤️";
+font-size:20px;
+position:absolute;
+top:-2px;
+left:-2px;
+}
+
+.party-item.balloon::after{
+content:"🎈";
+font-size:20px;
+position:absolute;
+top:-2px;
+left:-2px;
+}
+
+.party-item.confetti{
+background-color:#ff5f9e;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px);}
+100%{transform:translateY(100vh);}
+}
 </style>
 </head>
 
@@ -174,6 +212,27 @@ document.getElementById("slice").style.display="block"
 
 function showBlessing(){
 document.getElementById("final").style.display="block"
+createParty();
+}
+
+// PARTY EFFECT
+function createParty(){
+const colors=["#ff5f9e","#ffeb3b","#ff6f91","#ff9a9e","#a6c1ee","#76e0f0"];
+for(let i=0;i<40;i++){
+const item=document.createElement("div");
+item.className="party-item";
+const type=Math.random();
+if(type<0.3)item.classList.add("heart");
+else if(type<0.6)item.classList.add("balloon");
+else item.classList.add("confetti");
+
+item.style.left=Math.random()*100+"%";
+item.style.animationDuration=(2+Math.random()*3)+"s";
+item.style.fontSize=(10+Math.random()*15)+"px";
+document.body.appendChild(item);
+
+setTimeout(()=>item.remove(),4000);
+}
 }
 </script>
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cake Time 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ffd1dc,#fff1c1);
+font-family:'Trebuchet MS',sans-serif
+}
+
+.container{text-align:center}
+
+h1{color:#ff4f9a}
+
+/* Cake */
+.cake{
+width:300px;
+margin:40px auto;
+position:relative
+}
+
+.layer{
+height:90px;
+border-radius:15px;
+margin:5px auto
+}
+
+.l1{background:#ff9aa2;width:260px}
+.l2{background:#ffdac1;width:220px}
+.l3{background:#c7ceea;width:180px}
+
+/* Number Candle */
+.number-candle{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-bottom:10px
+}
+
+.num{
+font-size:70px;
+font-weight:bold;
+color:#ff4f9a;
+position:relative
+}
+
+.flame{
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+width:16px;
+height:22px;
+background:radial-gradient(circle,#fff176,#ff9800);
+border-radius:50%;
+animation:flicker .3s infinite alternate
+}
+
+@keyframes flicker{
+to{transform:translateX(-50%) scale(1.1)}
+}
+
+.flame.off{
+opacity:0;
+transform:translateY(-20px);
+transition:.5s
+}
+
+/* Buttons */
+button{
+margin-top:25px;
+padding:16px 42px;
+font-size:1.2em;
+border:none;
+border-radius:40px;
+background:#ff4f9a;
+color:white;
+cursor:pointer
+}
+
+#cutBtn{display:none}
+
+/* Slice */
+.slice{
+width:60px;
+height:60px;
+background:#ff9aa2;
+border-radius:0 0 50px 0;
+position:absolute;
+right:-20px;
+bottom:10px;
+cursor:pointer;
+display:none
+}
+
+/* Final Message */
+.final{
+display:none;
+margin-top:40px;
+background:white;
+padding:40px;
+border-radius:30px;
+animation:pop .6s forwards
+}
+
+@keyframes pop{
+from{transform:scale(.5);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🎂 Make a Wish 🎂</h1>
+
+<div class="number-candle">
+<div class="num">2<div class="flame"></div></div>
+<div class="num">0<div class="flame"></div></div>
+</div>
+
+<div class="cake" id="cake">
+<div class="layer l3"></div>
+<div class="layer l2"></div>
+<div class="layer l1"></div>
+<div class="slice" id="slice" onclick="showBlessing()"></div>
+</div>
+
+<button onclick="blowCandles()">💨 Blow Candles</button>
+<button id="cutBtn" onclick="cutCake()">🔪 Cut Cake</button>
+
+<div class="final" id="final">
+<h1>Happy 20th Birthday JAMBO 🎉💗</h1>
+<p>
+May your 20s be full of love, growth, success,<br>
+peace and beautiful memories ✨<br><br>
+You are truly precious 💕
+</p>
+</div>
+</div>
+
+<script>
+function blowCandles(){
+document.querySelectorAll(".flame").forEach(f=>{
+f.classList.add("off")
+})
+setTimeout(()=>{
+document.getElementById("cutBtn").style.display="inline-block"
+},1200)
+}
+
+function cutCake(){
+document.getElementById("slice").style.display="block"
+}
+
+function showBlessing(){
+document.getElementById("final").style.display="block"
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday JAMBO 🎉💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Alegreya', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            font-family: 'Belleza', sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin: 40px 0 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin: 60px 0 30px;
+        }
+
+        /* Surprise Page */
+        .surprise-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .surprise-content {
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .surprise-content h1 {
+            font-size: 5em;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .surprise-btn {
+            font-family: 'Belleza', sans-serif;
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 25px 60px;
+            font-size: 2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+        .photo-card:nth-child(4) { animation-delay: 0.4s; }
+        .photo-card:nth-child(5) { animation-delay: 0.5s; }
+        .photo-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo-card {
+            transform: translateY(30px);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photo-caption h3 {
+            font-family: 'Belleza', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        /* Personalized Message */
+        .message-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        .message-box p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-align: center;
+            color: #555;
+        }
+
+        /* Navigation Button */
+        .nav-btn {
+            font-family: 'Belleza', sans-serif;
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 40px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Cake Section */
+        .cake-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cake-section {
+            text-align: center;
+            position: relative;
+            padding: 40px;
+        }
+
+        .cake-container {
+            position: relative;
+            display: inline-block;
+            margin: 40px 0;
+        }
+
+        .cake {
+            width: 300px;
+            height: 350px;
+            position: relative;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .cake-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .layer-bottom {
+            width: 280px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c94b4b 100%);
+            bottom: 0;
+            border: 4px solid #8b3a3a;
+        }
+
+        .layer-middle {
+            width: 240px;
+            height: 90px;
+            background: linear-gradient(135deg, #ffc3a0 0%, #ff6b9d 100%);
+            bottom: 95px;
+            border: 4px solid #8b3a3a;
+        }
+
+        .layer-top {
+            width: 200px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            bottom: 180px;
+            border: 4px solid #4a3470;
+        }
+
+        .frosting {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: #fff;
+            top: -8px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .candles-container {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .candle {
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ff6b9d, #ff8fab);
+            border-radius: 3px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 25px;
+            background: radial-gradient(circle, #ffeb3b 0%, #ff9800 50%, transparent 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-50%) scale(1.1) translateY(-2px); }
+        }
+
+        .flame.blown {
+            animation: blowOut 0.5s ease forwards;
+        }
+
+        @keyframes blowOut {
+            to {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px) scale(0.5);
+            }
+        }
+
+        /* Party Favors */
+        .party-favor {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 3s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            font-family: 'Belleza', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Knife Animation */
+        .knife {
+            position: absolute;
+            top: -50px;
+            right: -100px;
+            font-size: 3em;
+            transform: rotate(-45deg);
+            animation: cutCake 2s ease forwards;
+        }
+
+        @keyframes cutCake {
+            0% {
+                right: -100px;
+                top: -50px;
+            }
+            50% {
+                right: 50%;
+                top: 50%;
+            }
+            100% {
+                right: 50%;
+                top: 50%;
+                transform: rotate(45deg);
+            }
+        }
+
+        /* Final Message */
+        .final-message {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: zoomIn 0.8s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .final-message h1 {
+            color: #667eea;
+            font-size: 4em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            .surprise-content h1 { font-size: 3em; }
+            .surprise-btn { padding: 20px 40px; font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Surprise Button -->
+    <div class="page active surprise-page" id="page1">
+        <div class="surprise-content">
+            <h1>🎁 Something Special Awaits! 🎁</h1>
+            <button class="surprise-btn" onclick="goToPage(2)">Click for Surprise! 🎉</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Gallery and Message -->
+    <div class="page" id="page2">
+        <div class="container">
+            <h1>🎉 Celebrating JAMBO 🎉</h1>
+            
+            <h2>✨ What Makes You Special ✨</h2>
+            <div class="gallery" id="photoGallery">
+                <!-- Photos will be loaded here -->
+            </div>
+
+            <h2>💌 A Special Message 💌</h2>
+            <div class="message-box">
+                <p>
+                    Dear JAMBO, on this special day, I want you to know how incredibly grateful I am to have you in my life. 
+                    Your friendship has brought countless moments of joy, laughter, and inspiration. You have a rare gift of 
+                    making everyone around you feel valued and loved. As you celebrate another year of life, I hope this year 
+                    brings you all the happiness, success, and beautiful moments you deserve. Thank you for being such an 
+                    amazing friend, for your kindness, your wisdom, and your unwavering support. Here's to many more years 
+                    of wonderful memories together. Happy Birthday! 🎂✨
+                </p>
+            </div>
+
+            <button class="nav-btn" onclick="goToPage(3)">🎂 Let's Cut the Cake! 🎂</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Cake Section -->
+    <div class="page cake-page" id="page3">
+        <div class="cake-section">
+            <h1 style="margin-bottom: 20px;">🎂 Make a Wish! 🎂</h1>
+            
+            <div class="cake-container" id="cakeContainer">
+                <div class="cake">
+                    <div class="cake-layer layer-top">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="cake-layer layer-middle">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="cake-layer layer-bottom">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="candles-container" id="candlesContainer">
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                        <div class="candle"><div class="flame"></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <button class="btn" id="blowBtn" onclick="blowCandles()">💨 Blow the Candles</button>
+                <button class="btn hidden" id="cutBtn" onclick="cutCake()">🔪 Cut the Cake</button>
+            </div>
+
+            <div class="final-message hidden" id="finalMessage">
+                <h1>Happy Birthday JAMBO 🎉💗</h1>
+                <p style="font-size: 1.5em; color: #667eea; margin-top: 20px;">
+                    Wishing you a day filled with love, laughter, and unforgettable moments! 🎈🎊
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Photo data - ADD YOUR IMAGE URLS HERE
+        const photos = [
+            {
+                title: "Kindness 💖",
+                description: "Your compassionate heart touches everyone around you, making the world a brighter place.",
+                image: "ph1.jpeg"
+            },
+            {
+                title: "Creativity ✨",
+                description: "Your imaginative spirit brings unique perspectives and innovative ideas to everything you do.",
+                image: "ph2.jpeg"
+            },
+            {
+                title: "Strength 💪",
+                description: "Your resilience and determination inspire others to overcome their own challenges.",
+                image: "ph3.jpeg"
+            },
+            {
+                title: "Joy 😊",
+                description: "Your infectious laughter and positive energy light up every room you enter.",
+                image: "ph4.jpeg"
+            },
+            {
+                title: "Focus 🎯",
+                description: "Your dedication and commitment to your goals are truly admirable and motivating.",
+                image: "ph5.jpeg"
+            },
+            {
+                title: "Loyalty ❤️",
+                description: "Your unwavering friendship and support make you a treasure in the lives of those who know you.",
+                image: "ph6.jpeg"
+            }
+        ];
+
+        // Load photos into gallery
+        function loadPhotos() {
+            const gallery = document.getElementById('photoGallery');
+            gallery.innerHTML = '';
+            
+            photos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.innerHTML = `
+                    <img src="${photo.image}" alt="${photo.title}">
+                    <div class="photo-caption">
+                        <h3>${photo.title}</h3>
+                        <p>${photo.description}</p>
+                    </div>
+                `;
+                gallery.appendChild(card);
+            });
+        }
+
+        // Page navigation
+        function goToPage(pageNum) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById('page' + pageNum).classList.add('active');
+            
+            // Load photos when going to page 2
+            if (pageNum === 2) {
+                loadPhotos();
+                window.scrollTo(0, 0);
+            }
+            
+            // Create party favors when going to page 3
+            if (pageNum === 3) {
+                setTimeout(() => createPartyFavors(), 500);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Create falling party favors
+        function createPartyFavors() {
+            const favors = ['🎈', '🎉', '🎊', '⭐', '💫', '✨', '🎁', '🎀'];
+            const container = document.querySelector('.cake-section');
+            
+            for (let i = 0; i < 20; i++) {
+                const favor = document.createElement('div');
+                favor.className = 'party-favor';
+                favor.textContent = favors[Math.floor(Math.random() * favors.length)];
+                favor.style.left = Math.random() * 100 + '%';
+                favor.style.animationDelay = Math.random() * 3 + 's';
+                favor.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                container.appendChild(favor);
+            }
+        }
+
+        // Blow candles function
+        function blowCandles() {
+            const flames = document.querySelectorAll('.flame');
+            flames.forEach((flame, i) => {
+                setTimeout(() => {
+                    flame.classList.add('blown');
+                }, i * 200);
+            });
+
+            setTimeout(() => {
+                document.getElementById('blowBtn').classList.add('hidden');
+                document.getElementById('cutBtn').classList.remove('hidden');
+            }, 1500);
+        }
+
+        // Cut cake function
+        function cutCake() {
+            const knife = document.createElement('div');
+            knife.className = 'knife';
+            knife.textContent = '🔪';
+            document.getElementById('cakeContainer').appendChild(knife);
+
+            setTimeout(() => {
+                document.getElementById('cakeContainer').style.opacity = '0';
+                document.getElementById('cakeContainer').style.transition = 'opacity 1s ease';
+                document.getElementById('blowBtn').style.display = 'none';
+                document.getElementById('cutBtn').style.display = 'none';
+            }, 2000);
+
+            setTimeout(() => {
+                document.getElementById('cakeContainer').classList.add('hidden');
+                document.getElementById('finalMessage').classList.remove('hidden');
+                createConfetti();
+            }, 3000);
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#667eea', '#764ba2', '#ffc3a0', '#ffeb3b'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>

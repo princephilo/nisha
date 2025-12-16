@@ -20,29 +20,13 @@ overflow-x:hidden
 .page{display:none;min-height:100vh}
 .page.active{display:flex}
 
-h1,h2{
-font-family:'Belleza',sans-serif;
-text-align:center;
-color:#fff
-}
+h1,h2{text-align:center;color:#fff;font-family:'Belleza',sans-serif}
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:20px
-}
+.container{max-width:1200px;margin:auto;padding:20px}
 
-/* PAGE 1 – SURPRISE */
-#page1{
-align-items:center;
-justify-content:center;
-flex-direction:column
-}
-
-#page1 h1{
-font-size:4em;
-animation:bounce 2s infinite
-}
+/* PAGE 1 */
+#page1{align-items:center;justify-content:center;flex-direction:column}
+#page1 h1{font-size:4em;animation:bounce 2s infinite}
 
 @keyframes bounce{
 0%,100%{transform:translateY(0)}
@@ -62,15 +46,11 @@ animation:pulse 2s infinite
 }
 
 @keyframes pulse{
-0%,100%{transform:scale(1)}
 50%{transform:scale(1.05)}
 }
 
 /* PAGE 2 – GALLERY */
-#page2{
-align-items:center;
-justify-content:center
-}
+#page2{align-items:center;justify-content:center}
 
 .gallery{
 display:grid;
@@ -84,12 +64,11 @@ background:white;
 border-radius:20px;
 overflow:hidden;
 box-shadow:0 10px 30px rgba(0,0,0,.3);
-animation:fadeInUp .6s forwards;
-opacity:0;
-transform:translateY(30px)
+animation:fade .6s forwards
 }
 
-@keyframes fadeInUp{
+@keyframes fade{
+from{opacity:0;transform:translateY(30px)}
 to{opacity:1;transform:translateY(0)}
 }
 
@@ -99,27 +78,13 @@ height:260px;
 object-fit:cover
 }
 
-.photo-caption{
-padding:20px;
-text-align:center
-}
-
-.photo-caption h3{
-font-family:'Belleza',sans-serif;
-color:#667eea;
-margin-bottom:10px
-}
+.photo-caption{padding:20px;text-align:center}
+.photo-caption h3{color:#667eea;margin-bottom:10px}
 
 .message-box{
 background:white;
 padding:40px;
 border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.3)
-}
-
-.message-box p{
-font-size:1.3em;
-line-height:1.8;
 text-align:center
 }
 
@@ -136,11 +101,7 @@ cursor:pointer
 }
 
 /* PAGE 3 – CAKE */
-#page3{
-align-items:center;
-justify-content:center;
-flex-direction:column
-}
+#page3{align-items:center;justify-content:center;flex-direction:column}
 
 .cake{
 position:relative;
@@ -149,18 +110,18 @@ height:350px;
 margin:40px auto
 }
 
-.cake-layer{
+.layer{
 position:absolute;
 left:50%;
 transform:translateX(-50%);
 border-radius:10px
 }
 
-.layer-bottom{width:280px;height:100px;background:#ff6b9d;bottom:0}
-.layer-middle{width:240px;height:90px;background:#ffc3a0;bottom:95px}
-.layer-top{width:200px;height:80px;background:#667eea;bottom:180px}
+.bottom{width:280px;height:100px;background:#ff6b9d;bottom:0}
+.middle{width:240px;height:90px;background:#ffc3a0;bottom:95px}
+.top{width:200px;height:80px;background:#667eea;bottom:180px}
 
-.frosting{height:15px;background:#fff;border-radius:50%;margin-top:-8px}
+.frosting{height:15px;background:white;border-radius:50%;margin-top:-8px}
 
 .candles{
 position:absolute;
@@ -171,27 +132,25 @@ display:flex;
 gap:12px
 }
 
-.candle{
-width:12px;
-height:50px;
-background:#ff8fab
-}
+.candle{width:12px;height:50px;background:#ff8fab;position:relative}
 
 .flame{
-width:15px;
-height:25px;
+position:absolute;
+top:-22px;
+left:50%;
+transform:translateX(-50%);
+width:15px;height:25px;
 background:radial-gradient(circle,#ffeb3b,#ff9800);
 border-radius:50%;
 animation:flicker .3s infinite alternate
 }
 
-@keyframes flicker{
-to{transform:scale(1.1)}
-}
+@keyframes flicker{to{transform:translateX(-50%) scale(1.1)}}
 
 .flame.blown{
 opacity:0;
-transform:translateY(-30px)
+transform:translateY(-30px);
+transition:.5s
 }
 
 .btn{
@@ -199,17 +158,33 @@ padding:15px 40px;
 font-size:1.2em;
 border:none;
 border-radius:50px;
-cursor:pointer;
 background:white;
-color:#667eea
+color:#667eea;
+cursor:pointer
 }
 
-.final-message{
+#cutBtn{display:none}
+
+/* Knife */
+.knife{
+position:absolute;
+font-size:3em;
+top:-60px;
+right:-100px;
+animation:cut 2s forwards
+}
+
+@keyframes cut{
+50%{right:50%;top:40%}
+100%{right:50%;top:40%;transform:rotate(45deg)}
+}
+
+.final{
+display:none;
 background:white;
 padding:60px;
 border-radius:30px;
 margin-top:40px;
-display:none;
 text-align:center
 }
 
@@ -239,16 +214,10 @@ to{transform:translateY(100vh)}
 <div class="page" id="page2">
 <div class="container">
 <h1>✨ What Makes You Special ✨</h1>
-
 <div class="gallery" id="gallery"></div>
 
 <div class="message-box">
-<p>
-Dear JAMBO 💗<br><br>
-You are not just a friend, you are a blessing in my life.
-Thank you for your love, laughter, and presence.
-Happy Birthday 🎂✨
-</p>
+<p>Dear JAMBO 💗<br><br>You are my happiness and blessing 🎂</p>
 </div>
 
 <button class="nav-btn" onclick="goToPage(3)">🎂 Cut the Cake 🎂</button>
@@ -259,10 +228,10 @@ Happy Birthday 🎂✨
 <div class="page" id="page3">
 <h1>🎂 Make a Wish 🎂</h1>
 
-<div class="cake">
-<div class="cake-layer layer-top"><div class="frosting"></div></div>
-<div class="cake-layer layer-middle"><div class="frosting"></div></div>
-<div class="cake-layer layer-bottom"><div class="frosting"></div></div>
+<div class="cake" id="cake">
+<div class="layer top"><div class="frosting"></div></div>
+<div class="layer middle"><div class="frosting"></div></div>
+<div class="layer bottom"><div class="frosting"></div></div>
 
 <div class="candles">
 <div class="candle"><div class="flame"></div></div>
@@ -274,21 +243,22 @@ Happy Birthday 🎂✨
 </div>
 
 <button class="btn" onclick="blowCandles()">💨 Blow Candles</button>
+<button class="btn" id="cutBtn" onclick="cutCake()">🔪 Cut Cake</button>
 
-<div class="final-message" id="final">
+<div class="final" id="final">
 <h1>Happy Birthday JAMBO 🎉💗</h1>
-<p>You deserve all the happiness in the world 💕</p>
+<p>You deserve all happiness 💕</p>
 </div>
 </div>
 
 <script>
 const photos=[
-{title:"Kindness 💖",desc:"Your heart makes everyone feel loved.",img:"ph1.jpeg"},
-{title:"Joy 😊",desc:"Your smile lights every moment.",img:"ph2.jpeg"},
-{title:"Strength 🌸",desc:"Your courage inspires me.",img:"ph3.jpeg"},
-{title:"Creativity ✨",desc:"Your ideas are magical.",img:"ph4.jpeg"},
+{title:"Kindness 💖",desc:"Your heart is pure.",img:"ph1.jpeg"},
+{title:"Joy 😊",desc:"Your smile is magic.",img:"ph2.jpeg"},
+{title:"Strength 🌸",desc:"You inspire me.",img:"ph3.jpeg"},
+{title:"Creativity ✨",desc:"Your ideas shine.",img:"ph4.jpeg"},
 {title:"Loyalty 🤍",desc:"Your friendship is priceless.",img:"ph5.jpeg"},
-{title:"Love 💕",desc:"You love deeply and purely.",img:"ph6.jpeg"}
+{title:"Love 💕",desc:"You love deeply.",img:"ph6.jpeg"}
 ];
 
 function goToPage(n){
@@ -298,10 +268,9 @@ if(n===2)loadGallery();
 }
 
 function loadGallery(){
-const g=document.getElementById("gallery");
-g.innerHTML="";
+gallery.innerHTML="";
 photos.forEach(p=>{
-g.innerHTML+=`
+gallery.innerHTML+=`
 <div class="photo-card">
 <img src="${p.img}">
 <div class="photo-caption">
@@ -313,16 +282,28 @@ g.innerHTML+=`
 }
 
 function blowCandles(){
-document.querySelectorAll(".flame").forEach(f=>f.classList.add("blown"));
-setTimeout(()=>{
-document.getElementById("final").style.display="block";
-createConfetti();
-},1200);
+document.querySelectorAll(".flame").forEach((f,i)=>{
+setTimeout(()=>f.classList.add("blown"),i*200);
+});
+setTimeout(()=>cutBtn.style.display="inline-block",1200);
 }
 
-function createConfetti(){
+function cutCake(){
+const knife=document.createElement("div");
+knife.className="knife";
+knife.textContent="🔪";
+cake.appendChild(knife);
+
+setTimeout(()=>cake.style.opacity="0",1800);
+setTimeout(()=>{
+final.style.display="block";
+confetti();
+},2600);
+}
+
+function confetti(){
 const colors=["#ff6b9d","#667eea","#ffc3a0","#ffeb3b"];
-for(let i=0;i<40;i++){
+for(let i=0;i<50;i++){
 const c=document.createElement("div");
 c.className="confetti";
 c.style.left=Math.random()*100+"%";
